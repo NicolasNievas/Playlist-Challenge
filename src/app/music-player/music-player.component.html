@@ -1,0 +1,21 @@
+<div class="player-container">
+    <h2>Playing music...</h2>
+    @if (currentSong) {
+      <div class="player-content">
+        <h3>{{ currentSong.name }}</h3>
+        <div class="progress-bar">
+          <div class="progress" [style.width.%]="(currentTime / currentSong.duration) * 100"></div>
+        </div>
+        <p>Duration: {{ currentTime }}/{{ currentSong.duration }} seconds.</p>
+        <div class="controls">
+          <button (click)="togglePlay()">{{ isPlaying ? '⏸' : '▶' }}</button>
+          @if (songs.indexOf(currentSong) < songs.length - 1) {
+            <button (click)="nextSong()">⏭</button>
+          }
+          <button (click)="closePlayer()">✖</button>
+        </div>
+      </div>
+    } @else {
+      <p>No songs to play.</p>
+    }
+  </div>

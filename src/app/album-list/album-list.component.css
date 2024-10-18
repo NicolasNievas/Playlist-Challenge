@@ -1,0 +1,63 @@
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    gap: 25px;
+    padding: 20px;
+  }
+  .album-item {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .album-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .album-item h3 {
+    margin: 12px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .album-item p {
+    margin: 5px 10px;
+    font-size: 12px;
+    color: #666;
+  }
+  .created-at, .user {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .play-button, .add-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .song-list {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+
+  .song-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .song-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .song-list li:last-child {
+    border-bottom: none;
+  }

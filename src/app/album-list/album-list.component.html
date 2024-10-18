@@ -1,0 +1,32 @@
+<div class="album-list">
+  <h2>Album List</h2>
+  <div class="album-grid">
+    @for (album of albums; track album.id) {
+      <div class="album-item">
+        <img [src]="album.front" [alt]="album.name + ' cover'" />
+        <h3>{{ album.name }}</h3>
+        <p class="created-at">{{ album.createdAt | date }}</p>
+        <p class="user">{{ album.user }}</p>
+        <button (click)="player(album.id)" class="play-button">▶</button>
+        <button (click)="addSong(album.id)" class="add-button">+</button>
+      </div>
+    }
+  </div>
+
+  @if (selectedAlbum) {
+    <div class="song-list">
+      <h3>Songs for {{ selectedAlbum.name }}</h3>
+      @if (songs.length > 0) {
+        <ul>
+          @for (song of songs; track song.id) {
+            <li>
+              {{ song.name }} - {{ song.duration }} seconds
+            </li>
+          }
+        </ul>
+      } @else {
+        <p>No songs found for this album</p>
+      }
+    </div>
+  }
+</div>

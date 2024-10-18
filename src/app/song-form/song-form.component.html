@@ -1,0 +1,57 @@
+<h1>Nueva canción</h1>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="row g-3 needs-validation">
+  <div class="col-md-12">
+    <label for="inputName" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="inputName" name="name" [(ngModel)]="song.name" #name="ngModel" required maxlength="20"
+           [ngClass]="{'is-valid': name.valid && (name.dirty || name.touched), 'is-invalid': name.invalid && (name.dirty || name.touched)}">
+    @if (name.invalid && (name.dirty || name.touched)) {
+      @if (name.errors?.['required']) {
+        <div class="invalid-feedback">Este campo es requerido.</div>
+      } @else if (name.errors?.['maxlength']) {
+        <div class="invalid-feedback">El nombre no puede tener más de 20 caracteres.</div>
+      }
+    }
+  </div>
+  
+  <div class="col-md-12">
+    <label for="inputCreateAt" class="form-label">Fecha</label>
+    <input type="date" class="form-control" id="inputCreateAt" name="createdAt" [(ngModel)]="song.createdAt" #createdAt="ngModel" required
+           [ngClass]="{'is-valid': createdAt.valid && (createdAt.dirty || createdAt.touched), 'is-invalid': createdAt.invalid && (createdAt.dirty || createdAt.touched)}">
+    @if (createdAt.invalid && (createdAt.dirty || createdAt.touched)) {
+      <div class="invalid-feedback">Seleccione una fecha.</div>
+    }
+  </div>
+  
+  <div class="col-md-12">
+    <label for="inputDuration" class="form-label">Duración</label>
+    <input type="range" class="form-range" id="inputDuration" name="duration" [(ngModel)]="song.duration" #duration="ngModel" required min="1" max="300"
+           [ngClass]="{'is-valid': duration.valid && (duration.dirty || duration.touched), 'is-invalid': duration.invalid && (duration.dirty || duration.touched)}">
+    <small>{{ song.duration }} segundos</small>
+    @if (duration.invalid && (duration.dirty || duration.touched)) {
+      <div class="invalid-feedback">Ingrese una duración válida (entre 1 y 300 segundos).</div>
+    }
+  </div>
+  
+  <div class="col-md-12">
+    <label for="inputOrder" class="form-label">Orden</label>
+    <input type="number" class="form-control" id="inputOrder" name="orderIndex" [(ngModel)]="song.orderIndex" #orderIndex="ngModel" required min="1"
+           [ngClass]="{'is-valid': orderIndex.valid && (orderIndex.dirty || orderIndex.touched), 'is-invalid': orderIndex.invalid && (orderIndex.dirty || orderIndex.touched)}">
+    @if (orderIndex.invalid && (orderIndex.dirty || orderIndex.touched)) {
+      <div class="invalid-feedback">Ingrese un orden válido (mínimo 1).</div>
+    }
+  </div>
+  
+  <div class="col-md-12">
+    <label for="inputUser" class="form-label">Usuario</label>
+    <input type="text" class="form-control" id="inputUser" name="user" [(ngModel)]="song.user" #user="ngModel" required
+           [ngClass]="{'is-valid': user.valid && (user.dirty || user.touched), 'is-invalid': user.invalid && (user.dirty || user.touched)}">
+    @if (user.invalid && (user.dirty || user.touched)) {
+      <div class="invalid-feedback">Ingrese un usuario.</div>
+    }
+  </div>
+  
+  <div class="col-12 d-flex justify-content-between">
+    <button class="btn btn-secondary" type="button" (click)="onCancel()">Cancelar</button>
+    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Guardar</button>
+  </div>
+</form>
